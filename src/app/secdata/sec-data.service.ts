@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs';
 import {Http, Headers, Response} from '@angular/http';
 
+import { environment } from '../../environments/environment';
 import {Symbol} from '../models/symbol';
 import {Filing} from '../models/filing';
 
@@ -16,21 +17,21 @@ export class SECDataService {
 
   getFiling(ticker: string): Observable<Filing> {
      return this.http
-      .get('api/secdata/' + ticker + '/filing', {
+      .get( `${environment.serviceBaseURI}api/secdata/${ticker}/filing`, {
         headers: JSON_HEADERS
       }).map(resp => resp.json());
   }
 
   getSymbol(ticker: string): Observable<Symbol> {
      return this.http
-      .get('api/secdata/' + ticker + '/symbol', {
+      .get(`${environment.serviceBaseURI}api/secdata/${ticker}/symbol`, {
         headers: JSON_HEADERS
       }).map(resp => resp.json());
   }
 
   searchSymbols(ticker: string): Observable<Array<Symbol>> {
      return this.http
-      .get('api/secdata/symbols/search/' + ticker, {
+      .get(`${environment.serviceBaseURI}api/secdata/symbols/search/${ticker}`, {
         headers: JSON_HEADERS
       }).map(resp => resp.json());
   }
