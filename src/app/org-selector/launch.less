@@ -1,0 +1,42 @@
+@import "../variables.less";
+.container {
+	padding: 1em;
+
+	&.can-compare {
+		h3 {
+			opacity: 0;
+			transform: translateY(-100%);
+		}
+
+		.btn-container {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	h3 {
+		width: 100%;
+		text-align: center;
+		transition: all 0.5s ease-in-out;
+	}
+}
+
+.btn {
+	border-radius: 7px;
+	border: 1px solid navy;
+	font-size: 2rem;
+	padding: 10px;
+	cursor: pointer;
+
+	&:hover {
+		background-color: @color_accent_1;
+	}
+}
+
+.btn-container {
+	text-align: center;
+	width: 100%;
+	opacity: 0;
+	transform: translateY(100%);
+	transition: all 0.5s ease-in-out;
+}

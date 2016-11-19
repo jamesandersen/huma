@@ -1,0 +1,21 @@
+@import "../variables.less";
+.symbol-item {
+    text-align: center;
+    border: transparent solid 2px;
+    margin: 5px;
+    box-shadow: 2px 2px 2px gray;
+    transition: 0.5s box-shadow,transform ease-in-out;
+
+    &.selected {
+        color: white;
+        background-color: @color_accent_1;
+        box-shadow: 3px 3px 5px gray;
+        .exchange { color: white; }
+        //svg.check { display: block; color: white; }
+    }
+}
+
+svg.check { display: none; }
+
+.exchange { color: gray; font-size: 1.5rem; }
+.ticker { font-weight: bold; font-size: 1.5rem; }

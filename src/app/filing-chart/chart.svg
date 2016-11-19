@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="100"
+   height="100"
+   viewBox="0 0 100 100"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="chart.svg">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="5.6568542"
+     inkscape:cx="38.592487"
+     inkscape:cy="48.337731"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     units="px"
+     inkscape:window-width="1440"
+     inkscape:window-height="851"
+     inkscape:window-x="0"
+     inkscape:window-y="1"
+     inkscape:window-maximized="1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid4247" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-952.36216)">
+    <rect
+       style="fill:#14a918;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.33095109px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       id="revenues"
+       width="8"
+       height="100.08247"
+       x="-19.165279"
+       y="-1052.0392"
+       transform="scale(-1,-1)"
+       inkscape:label="#rect3336" />
+    <rect
+       style="fill:#ce3100;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.13056207px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       id="cost_of_revenue"
+       width="7.8694382"
+       height="25.500025"
+       x="22.221676"
+       y="951.84241"
+       inkscape:label="#rect3338" />
+    <rect
+       style="fill:#ce3100;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.13314211px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       id="operating_expenses"
+       width="7.866858"
+       height="26.526493"
+       x="29.009907"
+       y="977.91473"
+       inkscape:label="#rect3338-5" />
+    <rect
+       style="fill:#14a918;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.07618578px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       id="other_operating_income"
+       width="7.9238143"
+       height="8.623107"
+       x="37.73502"
+       y="-1004.7671"
+       inkscape:label="#rect3338-5-1"
+       transform="scale(1,-1)" />
+    <rect
+       style="fill:#14a918;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.06759284px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       id="non_operating_income"
+       width="7.9324074"
+       height="6.7802672"
+       x="46.169498"
+       y="-996.66284"
+       inkscape:label="#rect3338-5-1"
+       transform="scale(1,-1)" />
+    <rect
+       style="fill:#ce3100;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.05805674px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       id="interest_debt_expense"
+       width="7.9419432"
+       height="4.9960732"
+       x="54.871361"
+       y="989.95099"
+       inkscape:label="#rect3338-5" />
+    <rect
+       style="fill:#ce3100;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.11679075px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       id="tax_expense"
+       width="7.8832092"
+       height="20.368736"
+       x="63.601425"
+       y="-1015.1946"
+       inkscape:label="#rect3338-5"
+       inkscape:transform-center-x="-15.684827"
+       inkscape:transform-center-y="14.694074"
+       transform="scale(1,-1)" />
+    <rect
+       style="fill:#ce3100;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.06582129px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       id="discontinued_operations"
+       width="7.9341788"
+       height="6.4280772"
+       x="72.023163"
+       y="-1021.4033"
+       inkscape:label="#rect3338-5"
+       inkscape:transform-center-x="-15.786237"
+       inkscape:transform-center-y="4.6372796"
+       transform="scale(1,-1)" />
+    <rect
+       style="fill:#ce3100;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.05922863px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       id="extraordinary_items"
+       width="7.9407716"
+       height="5.2005687"
+       x="80.594757"
+       y="-1026.1434"
+       inkscape:label="#rect3338-5"
+       inkscape:transform-center-x="-15.799355"
+       inkscape:transform-center-y="3.7517282"
+       transform="scale(1,-1)" />
+  </g>
+</svg>
