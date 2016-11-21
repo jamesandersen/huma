@@ -55,8 +55,8 @@ function generateState(initialState: SECCompare, actions: Observable<Action>): O
       newState = {
         symbol1: prevState.symbol1,
         symbol2: prevState.symbol2,
-        filing1: prevState.symbol1 !== null && prevState.symbol1.Symbol === action.filing.TradingSymbol ? action.filing : prevState.filing1,
-        filing2: prevState.symbol2 !== null && prevState.symbol2.Symbol === action.filing.TradingSymbol ? action.filing : prevState.filing2
+        filing1: prevState.symbol1 !== null && prevState.symbol1.Symbol === action.filing.tradingSymbol ? action.filing : prevState.filing1,
+        filing2: prevState.symbol2 !== null && prevState.symbol2.Symbol === action.filing.tradingSymbol ? action.filing : prevState.filing2
       };
     }
 

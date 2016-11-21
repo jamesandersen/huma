@@ -10,9 +10,9 @@ import { Filing } from '../models/filing';
   styles: [require('./filing-chart.less')],
   template: `
     <div class="chart" [@chartStateTrigger]="chartState">
-        Filing Chart {{filing?.TradingSymbol}}
-        <div>Document Type: {{filing?.DocumentType}}</div>
-        <div>Period End: {{filing?.DocumentPeriodEndDate}}</div>
+        Filing Chart {{filing?.tradingSymbol}}
+        <div>Document Type: {{filing?.documentType}}</div>
+        <div>Period End: {{filing?.documentPeriodEndDate}}</div>
         
         <div>
           <svg xmlns="http://www.w3.org/2000/svg" id="svg2" viewBox="0 0 100 100">
@@ -72,23 +72,23 @@ import { Filing } from '../models/filing';
           </svg>
         </div>
         <br>
-        <div class="rollup credit">Revenues: {{filing?.Revenues}}</div>
-        <div class="debit indent1">Cost of Revenue: {{filing?.CostOfRevenue}}</div>
-        <div class="debit indent1">Operating Expenses: {{filing?.OperatingExpenses}}</div>
-        <div class="debit rollup">Costs and Expenses: {{filing?.CostsAndExpenses}}</div>
-        <div class="credit">Other operating income: {{filing?.OtherOperatingIncome}}</div>
-        <div class="debit">Operating Income: {{filing?.OperatingIncomeLoss}}</div>
+        <div class="rollup credit">Revenues: {{filing?.revenues}}</div>
+        <div class="debit indent1">Cost of Revenue: {{filing?.costOfRevenue}}</div>
+        <div class="debit indent1">Operating Expenses: {{filing?.operatingExpenses}}</div>
+        <div class="debit rollup">Costs and Expenses: {{filing?.costsAndExpenses}}</div>
+        <div class="credit">Other operating income: {{filing?.otherOperatingIncome}}</div>
+        <div class="debit">Operating Income: {{filing?.operatingIncomeLoss}}</div>
         <br/>
-        <div class="rollup credit">Non-operating income: {{filing?.NonoperatingIncomeLoss}}</div>
-        <div class="debit indent1">Interest And Debt Expense: {{filing?.InterestAndDebtExpense}}</div>
-        <div class="credit rollup">Income (Loss) from Continuing Operations Before Tax: {{filing?.IncomeFromContinuingOperationsBeforeTax}}</div>
+        <div class="rollup credit">Non-operating income: {{filing?.nonoperatingIncomeLoss}}</div>
+        <div class="debit indent1">Interest And Debt Expense: {{filing?.interestAndDebtExpense}}</div>
+        <div class="credit rollup">Income (Loss) from Continuing Operations Before Tax: {{filing?.incomeFromContinuingOperationsBeforeTax}}</div>
         <br/>
 
-        <div class="rollup credit">Income Tax Expense (Benefit): {{filing?.IncomeTaxExpenseBenefit}}</div>
-        <div class="debit indent1">Income (Loss) from Continuing Operations After Tax: {{filing?.IncomeFromContinuingOperationsAfterTax}}</div>
-        <div class="credit indent1">Income (Loss) from Discontinued Operations, Net of Tax: {{filing?.IncomeFromDiscontinuedOperations}}</div>
-        <div class="credit rollup">Extraordinary Items of Income (Expense), Net of Tax: {{filing?.ExtraordaryItemsGainLoss}}</div>
-        <div class="credit rollup">Net Income (Loss): {{filing?.NetIncomeLoss}}</div>
+        <div class="rollup credit">Income Tax Expense (Benefit): {{filing?.incomeTaxExpenseBenefit}}</div>
+        <div class="debit indent1">Income (Loss) from Continuing Operations After Tax: {{filing?.incomeFromContinuingOperationsAfterTax}}</div>
+        <div class="credit indent1">Income (Loss) from Discontinued Operations, Net of Tax: {{filing?.incomeFromDiscontinuedOperations}}</div>
+        <div class="credit rollup">Extraordinary Items of Income (Expense), Net of Tax: {{filing?.extraordaryItemsGainLoss}}</div>
+        <div class="credit rollup">Net Income (Loss): {{filing?.netIncomeLoss}}</div>
         
         <br/>
         <button (click)="toggleChartState()">Toggle State</button>
@@ -173,15 +173,15 @@ export class FilingChartComponent implements OnInit, OnChanges {
       console.log(`height: ${height}, x: ${x}, y: ${y}, down: ${down}`);
       return { height: height, x: x, y: y, down: down };
     }
-    coords.revenues = buildCoord(firstCoord, this.filing.Revenues, true);
-    coords.costOfRevenue = buildCoord(coords.revenues, this.filing.CostOfRevenue, false);
-    coords.operatingExpenses = buildCoord(coords.costOfRevenue, this.filing.OperatingExpenses, false);
-    coords.otherOperatingIncome = buildCoord(coords.operatingExpenses, this.filing.OtherOperatingIncome, true);
-    coords.nonoperatingIncomeLoss = buildCoord(coords.otherOperatingIncome, this.filing.NonoperatingIncomeLoss, true);
-    coords.interestAndDebtExpense = buildCoord(coords.nonoperatingIncomeLoss, this.filing.InterestAndDebtExpense, false);
-    coords.incomeTaxExpenseBenefit = buildCoord(coords.interestAndDebtExpense, this.filing.IncomeTaxExpenseBenefit, false);
-    coords.incomeFromDiscontinuedOperations = buildCoord(coords.incomeTaxExpenseBenefit, this.filing.IncomeFromDiscontinuedOperations, true);
-    coords.extraordaryItemsGainLoss = buildCoord(coords.incomeFromDiscontinuedOperations, this.filing.ExtraordaryItemsGainLoss, true);
+    coords.revenues = buildCoord(firstCoord, this.filing.revenues, true);
+    coords.costOfRevenue = buildCoord(coords.revenues, this.filing.costOfRevenue, false);
+    coords.operatingExpenses = buildCoord(coords.costOfRevenue, this.filing.operatingExpenses, false);
+    coords.otherOperatingIncome = buildCoord(coords.operatingExpenses, this.filing.otherOperatingIncome, true);
+    coords.nonoperatingIncomeLoss = buildCoord(coords.otherOperatingIncome, this.filing.nonoperatingIncomeLoss, true);
+    coords.interestAndDebtExpense = buildCoord(coords.nonoperatingIncomeLoss, this.filing.interestAndDebtExpense, false);
+    coords.incomeTaxExpenseBenefit = buildCoord(coords.interestAndDebtExpense, this.filing.incomeTaxExpenseBenefit, false);
+    coords.incomeFromDiscontinuedOperations = buildCoord(coords.incomeTaxExpenseBenefit, this.filing.incomeFromDiscontinuedOperations, true);
+    coords.extraordaryItemsGainLoss = buildCoord(coords.incomeFromDiscontinuedOperations, this.filing.extraordaryItemsGainLoss, true);
 
     return coords;
   }

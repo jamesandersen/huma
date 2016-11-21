@@ -62,8 +62,8 @@ export class CompareComponent implements OnInit, OnDestroy {
     this.maxValue = this.state.map(state => {
       return state.compare && (state.compare.filing1 || state.compare.filing2)
         ? Math.max(
-          state.compare.filing1 ? state.compare.filing1.Revenues : 0,
-          state.compare.filing2 ? state.compare.filing2.Revenues : 0)
+          state.compare.filing1 ? state.compare.filing1.revenues : 0,
+          state.compare.filing2 ? state.compare.filing2.revenues : 0)
         : 0;
     });
   }
@@ -77,7 +77,7 @@ export class CompareComponent implements OnInit, OnDestroy {
   private setFiling(symbolState : any, loading : BehaviorSubject<boolean>) : Subscription {
     if (!symbolState[1] && // not already loading
         symbolState[0].symbol && // has a symbol
-        (!symbolState[0].filing || symbolState[0].symbol.Symbol !== symbolState[0].filing.TradingSymbol)) {
+        (!symbolState[0].filing || symbolState[0].symbol.Symbol !== symbolState[0].filing.tradingSymbol)) {
 
       loading.next(true);
       return this.dataService.getFiling(symbolState[0].symbol.Symbol)
