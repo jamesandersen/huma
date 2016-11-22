@@ -62,7 +62,7 @@ export class SymbolPickerComponent implements OnInit, OnChanges {
         .switchMap(term => {
           console.log('ticker value change: ' + term);
           this.loading.next(true);
-          return this.dataService.searchSymbols(term)
+          return this.dataService.searchSymbols(term.toString())
                   .catch((err, obs) => Observable.from([[ <Symbol>{ Name: `no data matches ${term}`}]]));
         })
         .do(val => this.loading.next(false));
