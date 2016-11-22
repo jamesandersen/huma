@@ -35,7 +35,7 @@ function stateFn(initialState: AppState, actions: Observable<Action>): Observabl
 
 // TODO: Not really doing anything here to enforce immutability
 function generateState(initialState: SECCompare, actions: Observable<Action>): Observable<SECCompare> {
-  return actions.scan<SECCompare>((prevState, action) => {
+  return actions.scan<Action, SECCompare>((prevState, action) => {
     let newState: SECCompare = prevState;
     if (action instanceof SetSymbolAction) {
       newState = {
