@@ -1,15 +1,17 @@
-import { OpaqueToken, Inject } from '@angular/core';
+import { OpaqueToken } from '@angular/core';
 import { SECCompare, AppState} from './models/AppState';
 import { Action, SetSymbolAction, ClearTickersAction, SetFilingAction } from './models/Actions';
 
-import { BehaviorSubject, Subject, Observable, Observer } from 'rxjs';
+import { BehaviorSubject, Subject, Observable } from 'rxjs';
 
 export const initState = new OpaqueToken('initState');
 export const dispatcher = new OpaqueToken('dispatcher');
 export const state = new OpaqueToken('state');
 
 export const stateAndDispatcher = [
-  { provide: initState, useValue: {
+  {
+    provide: initState,
+    useValue: {
       compare: {
         ticker1: null,
         ticker2: null,
@@ -19,28 +21,19 @@ export const stateAndDispatcher = [
         filing2: null
       }
     }
-    },
+  },
   { provide: dispatcher, useValue: new Subject<Action>() },
-  { provide: state, useFactory: stateFn, deps: [initState, dispatcher] }
+  { provide: state, useFactory: generateState, deps: [initState, dispatcher] }
 ];
 
-function stateFn(initialState: AppState, actions: Observable<Action>): Observable<AppState> {
-
-  const compareToState = compare => (<AppState>{ compare: compare });
-
-  const appStateObs: Observable<AppState> = generateState(initialState.compare, actions).map(compareToState);
-
-  return wrapIntoBehavior(initialState, appStateObs);
-}
-
-// TODO: Not really doing anything here to enforce immutability
-function generateState(initialState: SECCompare, actions: Observable<Action>): Observable<SECCompare> {
-  return actions.scan((prevState, action) => {
-    let newState: SECCompare = prevState;
+function generateState(initialState: AppState, actions: Observable<Action>): Observable<AppState> {
+  const res = new BehaviorSubject(initialState);
+  const stateFromActions = actions.scan((prevState, action) => {
+    let newState: SECCompare = prevState.compare;
     if (action instanceof SetSymbolAction) {
       newState = {
-        symbol1: action.symbolIndex === 1 ? action.symbol : prevState.symbol1,
-        symbol2: action.symbolIndex === 2 ? action.symbol : prevState.symbol2,
+        symbol1: action.symbolIndex === 1 ? action.symbol : prevState.compare.symbol1,
+        symbol2: action.symbolIndex === 2 ? action.symbol : prevState.compare.symbol2,
         filing1: null,
         filing2: null
       };
@@ -53,21 +46,21 @@ function generateState(initialState: SECCompare, actions: Observable<Action>): O
       };
     } else if (action instanceof SetFilingAction) {
       newState = {
-        symbol1: prevState.symbol1,
-        symbol2: prevState.symbol2,
-        filing1: prevState.symbol1 !== null && prevState.symbol1.Symbol === action.filing.tradingSymbol ? action.filing : prevState.filing1,
-        filing2: prevState.symbol2 !== null && prevState.symbol2.Symbol === action.filing.tradingSymbol ? action.filing : prevState.filing2
+        symbol1: prevState.compare.symbol1,
+        symbol2: prevState.compare.symbol2,
+        filing1: prevState.compare.symbol1 !== null && prevState.compare.symbol1.Symbol === action.filing.tradingSymbol
+            ? action.filing
+            : prevState.compare.filing1,
+        filing2: prevState.compare.symbol2 !== null && prevState.compare.symbol2.Symbol === action.filing.tradingSymbol
+            ? action.filing
+            : prevState.compare.filing2
       };
     }
 
-    return newState;
+    return <AppState>{ compare: newState };
   }, initialState).share();
-}
 
-function wrapIntoBehavior(init, obs) {
-  const res = new BehaviorSubject(init);
-  obs.subscribe(s => {
-    res.next(s);
-  });
+  stateFromActions.subscribe(s => { 
+    res.next(s); });
   return res;
 }

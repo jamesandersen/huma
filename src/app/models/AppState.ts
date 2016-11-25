@@ -1,15 +1,15 @@
-import { Symbol } from './symbol.ts';
-import { Filing } from './filing.ts';
+import { Symbol } from './symbol';
+import { Filing } from './filing';
 
 export interface SECCompare {
-    filing1 : Filing;
-    filing2 : Filing;
+    readonly filing1: Filing;
+    readonly filing2: Filing;
 
-    symbol1 : Symbol;
-    symbol2 : Symbol;
+    readonly symbol1: Symbol;
+    readonly symbol2: Symbol;
 }
 
 export interface AppState {
-    compare: SECCompare;
-    visibilityFilter: string;
+    readonly compare: SECCompare;
+    readonly visibilityFilter: string;
 }

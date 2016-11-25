@@ -52,7 +52,7 @@ export class OrgSelectorComponent implements OnInit {
     });
   }
 
-  get compare() { return this.state.map(s => s.compare); }
+  get compare() { return this.state.map(s => s.compare)}
   get canCompare() { return this.state.map(s => !!(s.compare.symbol1 && s.compare.symbol2)); }
 
   onSelection(index: number, evt: Symbol) {
