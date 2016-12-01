@@ -1,11 +1,7 @@
-import {Component, OnInit, Inject} from '@angular/core';
-import {Response} from '@angular/http';
-import {Observable, Observer} from 'rxjs';
+import {Component, OnInit} from '@angular/core';
 import {SetSymbolAction } from '../actions/compare';
 import { ActivatedRoute, Router } from '@angular/router';
 import {Symbol} from '../models/symbol';
-import {AppState} from '../models/AppState';
-import {SymbolPickerComponent} from './symbol-picker.component';
 import {SECDataService} from '../secdata/sec-data.service';
 
 import { Store } from '@ngrx/store';
@@ -22,19 +18,17 @@ import * as fromRoot from '../reducers';
   // selector: 'launch', // <app></app>
 
   providers: [SECDataService],
-  //pipes: [],
+  // pipes: [],
   // Our list of styles in our component. We may add more to compose many styles together
-  //styles: [require('./launch.less')],
+  // styles: [require('./launch.less')],
   // Every Angular template is first compiled by the browser before Angular runs it's compiler
   template: require('./launch.html'),
   styles: [require('./launch.less')]
 })
 export class OrgSelectorComponent implements OnInit {
   public error: string;
-  
-  private autoSelect1 : boolean = true;
 
-  constructor( 
+  constructor(
     private state: Store<fromRoot.State>,
     private router: Router,
     private route: ActivatedRoute,
