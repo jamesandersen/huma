@@ -7,7 +7,7 @@ import { Filing } from '../models/filing';
 
 @Component({
   selector: 'app-filing-chart',
-  styles: [require('./filing-chart.less')],
+  styleUrls: ['./filing-chart.less'],
   template: `
     <div class="chart" [@chartStateTrigger]="chartState">
         Filing Chart {{filing?.tradingSymbol}}

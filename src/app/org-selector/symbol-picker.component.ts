@@ -19,7 +19,7 @@ import * as fromRoot from '../reducers';
 
   providers: [SECDataService],
   // Our list of styles in our component. We may add more to compose many styles together
-  styles: [require('./symbol-picker.less')],
+  styleUrls: ['./symbol-picker.less'],
   // Every Angular template is first compiled by the browser before Angular runs it's compiler
   template: `<div class="symbol" [formGroup]="symbolForm">
       <input type="text" name="ticker" required formControlName="ticker" [placeholder]="placeholder">

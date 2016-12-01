@@ -7,6 +7,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
 
 import { AppComponent } from './app.component';
+import { BannerComponent } from './banner/banner.component';
 import { OrgSelectorComponent } from './org-selector/org-selector.component';
 import { CompareComponent } from './compare/compare.component';
 import { SymbolPickerComponent } from './org-selector/symbol-picker.component';
@@ -15,17 +16,20 @@ import { FilingChartComponent } from './filing-chart/filing-chart.component';
 
 import { OrgSelectorRoutes } from './org-selector/org-selector.routes';
 import { CompareRoutes } from './compare/compare.routes';
+import { BannerRoutes } from './banner/banner.routes';
 
 import { reducer } from './reducers';
 
 const routes: Routes = [
   ...OrgSelectorRoutes,
-  ...CompareRoutes
+  ...CompareRoutes,
+  ...BannerRoutes
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
+    BannerComponent,
     OrgSelectorComponent,
     CompareComponent,
     SymbolItemComponent,

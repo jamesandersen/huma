@@ -2,10 +2,11 @@ import {Component, OnInit, OnDestroy} from '@angular/core';
 import {SECDataService} from '../secdata/sec-data.service';
 import {Observable, BehaviorSubject, Subscription} from 'rxjs';
 
-import {SetFilingAction} from '../actions/compare';
+import {SetFilingAction } from '../actions/compare';
 
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../reducers';
+import { SECCompare } from '../reducers/compare';
 
 /*
  * Compare Component
@@ -14,7 +15,7 @@ import * as fromRoot from '../reducers';
 @Component({
   selector: 'app-compare',
   providers: [ SECDataService ],
-  styles: [require('./compare.less')],
+  styleUrls: ['./compare.less'],
   template: `
   <div class="compare">
     <div [hidden]="(loading1 | async)">
@@ -70,7 +71,7 @@ export class CompareComponent implements OnInit, OnDestroy {
     this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 
-  get compare() { return this.state.map(s => s.compare); }
+  get compare(): Observable<SECCompare> { return this.state.map(s => s.compare); }
 
   private setFiling(symbolState : any, loading : BehaviorSubject<boolean>) : Subscription {
     if (!symbolState[1] && // not already loading

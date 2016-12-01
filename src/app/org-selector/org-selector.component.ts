@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {Observable } from 'rxjs';
 import {SetSymbolAction } from '../actions/compare';
 import { ActivatedRoute, Router } from '@angular/router';
 import {Symbol} from '../models/symbol';
@@ -6,6 +7,7 @@ import {SECDataService} from '../secdata/sec-data.service';
 
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../reducers';
+import { SECCompare } from '../reducers/compare';
 
 /*
  * App Component
@@ -22,8 +24,8 @@ import * as fromRoot from '../reducers';
   // Our list of styles in our component. We may add more to compose many styles together
   // styles: [require('./launch.less')],
   // Every Angular template is first compiled by the browser before Angular runs it's compiler
-  template: require('./launch.html'),
-  styles: [require('./launch.less')]
+  templateUrl: './launch.html',
+  styleUrls: ['./launch.less']
 })
 export class OrgSelectorComponent implements OnInit {
   public error: string;
@@ -47,7 +49,7 @@ export class OrgSelectorComponent implements OnInit {
     });
   }
 
-  get compare() { return this.state.map(s => s.compare)}
+  get compare(): Observable<SECCompare> { return this.state.map(s => s.compare)}
   get canCompare() { return this.state.map(s => !!(s.compare.symbol1 && s.compare.symbol2)); }
 
   onSelection(index: number, evt: Symbol) {

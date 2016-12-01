@@ -8,7 +8,7 @@ import {Symbol} from '../models/symbol';
 @Component({
   selector: 'app-symbol-item', // <app></app>
   providers: [],
-  styles: [require('./symbol-item.less')],
+  styleUrls: ['./symbol-item.less'],
   // Every Angular template is first compiled by the browser before Angular runs it's compiler
   template: `
     <li [@itemStateTrigger]="state" class="symbol-item" [ngClass]="{ selected: state == 'selected' }">
