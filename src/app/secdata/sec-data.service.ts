@@ -31,7 +31,7 @@ export class SECDataService {
 
   searchSymbols(ticker: string): Observable<Array<Symbol>> {
      return this.http
-      .get(`${environment.serviceBaseURI}api/secdata/symbols/search/${ticker}`, {
+      .get(`${environment.serviceBaseURI}api/secdata/search/${ticker}`, {
         headers: JSON_HEADERS
       }).map(resp => resp.json());
   }
