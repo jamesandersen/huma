@@ -1,13 +1,15 @@
 import {Component, OnInit, Inject} from '@angular/core';
 import {Response} from '@angular/http';
 import {Observable, Observer} from 'rxjs';
-import {Action, SetSymbolAction } from '../models/Actions';
+import {SetSymbolAction } from '../actions/compare';
 import { ActivatedRoute, Router } from '@angular/router';
 import {Symbol} from '../models/symbol';
 import {AppState} from '../models/AppState';
-import {state, dispatcher } from '../../app/app.dispatcher';
 import {SymbolPickerComponent} from './symbol-picker.component';
 import {SECDataService} from '../secdata/sec-data.service';
+
+import { Store } from '@ngrx/store';
+import * as fromRoot from '../reducers';
 
 /*
  * App Component
@@ -33,8 +35,7 @@ export class OrgSelectorComponent implements OnInit {
   private autoSelect1 : boolean = true;
 
   constructor( 
-    @Inject(dispatcher) private dispatcher: Observer<Action>,
-    @Inject(state) private state: Observable<AppState>,
+    private state: Store<fromRoot.State>,
     private router: Router,
     private route: ActivatedRoute,
     private secService: SECDataService) { }
@@ -56,7 +57,7 @@ export class OrgSelectorComponent implements OnInit {
   get canCompare() { return this.state.map(s => !!(s.compare.symbol1 && s.compare.symbol2)); }
 
   onSelection(index: number, evt: Symbol) {
-    this.dispatcher.next(new SetSymbolAction(index, evt));
+    this.state.dispatch(new SetSymbolAction({ index: index, symbol: evt }));
   }
 
   compareSymbols() {

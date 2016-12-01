@@ -1,4 +1,4 @@
-import {Component, Input, EventEmitter, ChangeDetectionStrategy, trigger,
+import {Component, Input, ChangeDetectionStrategy, trigger,
   state,
   style,
   transition,
@@ -6,7 +6,7 @@ import {Component, Input, EventEmitter, ChangeDetectionStrategy, trigger,
 import {Symbol} from '../models/symbol';
 
 @Component({
-  selector: 'symbol-item', // <app></app>
+  selector: 'app-symbol-item', // <app></app>
   providers: [],
   styles: [require('./symbol-item.less')],
   // Every Angular template is first compiled by the browser before Angular runs it's compiler
@@ -54,10 +54,10 @@ import {Symbol} from '../models/symbol';
 export class SymbolItemComponent {
    @Input() symbol: Symbol;
    @Input() selected: boolean = false;
-   
-   constructor(){}
-  
-   get state() : string {
+
+   constructor() {}
+
+   get state(): string {
      return this.selected === true ? 'selected' : (this.selected === false ? 'unselected' : 'default');
    }
 }

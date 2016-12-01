@@ -6,7 +6,7 @@ import {Component, OnInit, OnChanges, SimpleChanges, Input, trigger,
 import { Filing } from '../models/filing';
 
 @Component({
-  selector: 'filing-chart',
+  selector: 'app-filing-chart',
   styles: [require('./filing-chart.less')],
   template: `
     <div class="chart" [@chartStateTrigger]="chartState">
@@ -147,32 +147,32 @@ export class FilingChartComponent implements OnInit, OnChanges {
   }
 
   pixelValue = dollarValue => {
-    var val = dollarValue / this.maxValue * 100;
+    let val = dollarValue / this.maxValue * 100;
     return isNaN(val) ? 0 : val;
   }
 
   getFilingChartCoordinates= () => {
-    var firstCoord = { x: 0, y: 100, height: 0, down: false }; // start in top left of chart
-    var coords : any = { };
+    let firstCoord = { x: 0, y: 100, height: 0, down: false }; // start in top left of chart
+    let coords: any = { };
 
-    var buildCoord : any = (lastCoord: any, value: number, isCredit: boolean) => {
+    let buildCoord: any = (lastCoord: any, value: number, isCredit: boolean) => {
 
       // set the height by adjusting the raw $ value to chart scale
-      var height = Math.abs(this.pixelValue(value));
+      let height = Math.abs(this.pixelValue(value));
 
       // if there is a value move x over to the right, otherwise keep it the same
-      var x = value !== 0 ? lastCoord.x + 10 : lastCoord.x;
+      let x = value !== 0 ? lastCoord.x + 10 : lastCoord.x;
 
       // y is based on the height of the value but also whether value is + or - AND credit or debit
       // a positive debit OR negative credit takes us DOWN the y-axis while
       // a negative debit OR positive credit takes us UP the y-axis
-      var down = (value > 0 ? true : false) && (isCredit ? false : true );
-      var lastCoordStartY = lastCoord.y + (lastCoord.down ? lastCoord.height : 0);
-      var y = lastCoordStartY - (down ? 0 : height);
+      let down = (value > 0 ? true : false) && (isCredit ? false : true );
+      let lastCoordStartY = lastCoord.y + (lastCoord.down ? lastCoord.height : 0);
+      let y = lastCoordStartY - (down ? 0 : height);
 
       console.log(`height: ${height}, x: ${x}, y: ${y}, down: ${down}`);
       return { height: height, x: x, y: y, down: down };
-    }
+    };
     coords.revenues = buildCoord(firstCoord, this.filing.revenues, true);
     coords.costOfRevenue = buildCoord(coords.revenues, this.filing.costOfRevenue, false);
     coords.operatingExpenses = buildCoord(coords.costOfRevenue, this.filing.operatingExpenses, false);

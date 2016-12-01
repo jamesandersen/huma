@@ -1,13 +1,11 @@
-import {Component, OnInit, Inject, Input, Output, EventEmitter, OnChanges, SimpleChanges} from '@angular/core';
-import {Response} from '@angular/http';
+import {Component, OnInit,  Input, Output, EventEmitter, OnChanges, SimpleChanges} from '@angular/core';
 import {FormControl, FormGroup } from '@angular/forms';
-import {Observable, Observer, BehaviorSubject} from 'rxjs';
-import {Action, SetSymbolAction } from '../models/Actions';
+import {Observable, BehaviorSubject} from 'rxjs';
 import {SECDataService} from '../secdata/sec-data.service';
 import {Symbol} from '../models/symbol';
-import {AppState} from '../models/AppState';
-import { state } from '../../app/app.dispatcher';
-import {SymbolItemComponent} from './symbol-item.component';
+
+import { Store } from '@ngrx/store';
+import * as fromRoot from '../reducers';
 
 /*
  * App Component
@@ -17,7 +15,7 @@ import {SymbolItemComponent} from './symbol-item.component';
   // The selector is what angular internally uses
   // for `document.querySelectorAll(selector)` in our index.html
   // where, in this case, selector is the string 'app'
-  selector: 'symbol-picker', // <app></app>
+  selector: 'app-symbol-picker', // <app></app>
 
   providers: [SECDataService],
   // Our list of styles in our component. We may add more to compose many styles together
@@ -26,10 +24,10 @@ import {SymbolItemComponent} from './symbol-item.component';
   template: `<div class="symbol" [formGroup]="symbolForm">
       <input type="text" name="ticker" required formControlName="ticker" [placeholder]="placeholder">
       <ul [hidden]="loading | async">
-        <symbol-item *ngFor="let symbol of tickerSymbols | async" (click)="onSelection(symbol)"
+        <app-symbol-item *ngFor="let symbol of tickerSymbols | async" (click)="onSelection(symbol)"
           [symbol]="symbol"
           [selected]="!selectedSymbol ? undefined : symbol.Symbol === selectedSymbol.Symbol"
-          ></symbol-item>
+          ></app-symbol-item>
       </ul>
       <div [hidden]="(loading | async) === false || false" class="loader">Loading...</div>
     </div>`
@@ -49,13 +47,13 @@ export class SymbolPickerComponent implements OnInit, OnChanges {
   private updatingSelectedSymbol : boolean = false;
 
   constructor(
-    @Inject(state) private state: Observable<AppState>,
+    private state: Store<fromRoot.State>,
     public dataService: SECDataService) { }
 
   ngOnInit() {
 
     // merge initial value with subsequent changes into stream
-    var symbolChangesByUserEntry = this.tickerControl.valueChanges
+    let symbolChangesByUserEntry = this.tickerControl.valueChanges
         .filter(txt => !this.updatingSelectedSymbol)
         .debounceTime(200)
         .distinctUntilChanged()

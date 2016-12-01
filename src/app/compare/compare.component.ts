@@ -1,35 +1,34 @@
-import {Component, OnInit, Inject, OnDestroy} from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
 import {SECDataService} from '../secdata/sec-data.service';
-import {FilingChartComponent} from '../filing-chart/filing-chart.component';
-import {state, dispatcher } from '../../app/app.dispatcher';
-import {Observable, Observer, BehaviorSubject, Subscription} from 'rxjs';
+import {Observable, BehaviorSubject, Subscription} from 'rxjs';
 
-import {AppState} from '../models/AppState';
-import {Filing } from '../models/filing';
-import {Action, SetFilingAction} from '../models/Actions';
+import {SetFilingAction} from '../actions/compare';
+
+import { Store } from '@ngrx/store';
+import * as fromRoot from '../reducers';
 
 /*
  * Compare Component
  * Compares filings for two companies
  */
 @Component({
-  selector: 'compare',
+  selector: 'app-compare',
   providers: [ SECDataService ],
   styles: [require('./compare.less')],
   template: `
   <div class="compare">
     <div [hidden]="(loading1 | async)">
-      <filing-chart 
+      <app-filing-chart 
         [filing]="(compare | async).filing1" 
-        [maxValue]="(maxValue | async)"></filing-chart>
+        [maxValue]="(maxValue | async)"></app-filing-chart>
     </div>
     <div [hidden]="(loading1 | async) === false || false" class="loader">Loading...</div>
   </div>
   <div class="compare">
     <div [hidden]="(loading2 | async)">
-      <filing-chart 
+      <app-filing-chart 
         [filing]="(compare | async).filing2" 
-        [maxValue]="(maxValue | async)"></filing-chart>
+        [maxValue]="(maxValue | async)"></app-filing-chart>
     </div>
     <div [hidden]="(loading2 | async) === false || false" class="loader">Loading...</div>
   </div>
@@ -44,8 +43,7 @@ export class CompareComponent implements OnInit, OnDestroy {
    private subscriptions : Subscription[] = [];
 
    constructor(
-     @Inject(dispatcher) private dispatcher: Observer<Action>,
-     @Inject(state) private state: Observable<AppState>,
+     private state: Store<fromRoot.State>,
     public dataService: SECDataService) {}
 
   ngOnInit() {
@@ -83,7 +81,7 @@ export class CompareComponent implements OnInit, OnDestroy {
       return this.dataService.getFiling(symbolState[0].symbol.Symbol)
               .map(data => new SetFilingAction(data)).take(1)
               .subscribe(action => {
-                this.dispatcher.next(action);
+                this.state.dispatch(action);
                 loading.next(false); // don't end loading state until the AppState has been updated
               });
     }

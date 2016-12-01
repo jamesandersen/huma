@@ -1,12 +1,12 @@
 <div class="container" [ngClass]="{ 'can-compare': (canCompare | async) }">
   <h3>Choose two stocks to compare</h3>
   <div>
-    <symbol-picker placeholder="MSFT"
+    <app-symbol-picker placeholder="MSFT"
       [selectedSymbol]="(compare | async).symbol1"
-      (symbolSelected)="onSelection(1, $event)"></symbol-picker>
-    <symbol-picker placeholder="AAPL"
+      (symbolSelected)="onSelection(1, $event)"></app-symbol-picker>
+    <app-symbol-picker placeholder="AAPL"
       [selectedSymbol]="(compare | async).symbol2"
-      (symbolSelected)="onSelection(2, $event)"></symbol-picker>
+      (symbolSelected)="onSelection(2, $event)"></app-symbol-picker>
   </div>
   
   <div class="btn-container">
