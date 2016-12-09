@@ -48,15 +48,6 @@ export class CompareComponent implements OnInit, OnDestroy {
     public dataService: SECDataService) {}
 
   ngOnInit() {
-    this.subscriptions.push(
-      this.state.map(state => { return { symbol: state.compare.symbol1, filing: state.compare.filing1}; })
-      .combineLatest(this.loading1)
-      .subscribe(state => { this.setFiling(state, this.loading1); }));
-
-    this.subscriptions.push(
-      this.state.map(state => { return { symbol: state.compare.symbol2, filing: state.compare.filing2}; })
-      .combineLatest(this.loading2)
-      .subscribe(state => { this.setFiling(state, this.loading2); }));
 
     this.maxValue = this.state.map(state => {
       return state.compare && (state.compare.filing1 || state.compare.filing2)
@@ -72,21 +63,4 @@ export class CompareComponent implements OnInit, OnDestroy {
   }
 
   get compare(): Observable<SECCompare> { return this.state.map(s => s.compare); }
-
-  private setFiling(symbolState : any, loading : BehaviorSubject<boolean>) : Subscription {
-    if (!symbolState[1] && // not already loading
-        symbolState[0].symbol && // has a symbol
-        (!symbolState[0].filing || symbolState[0].symbol.Symbol !== symbolState[0].filing.tradingSymbol)) {
-
-      loading.next(true);
-      return this.dataService.getFiling(symbolState[0].symbol.Symbol)
-              .map(data => new SetFilingAction(data)).take(1)
-              .subscribe(action => {
-                this.state.dispatch(action);
-                loading.next(false); // don't end loading state until the AppState has been updated
-              });
-    }
-
-    return null;
-  }
 }

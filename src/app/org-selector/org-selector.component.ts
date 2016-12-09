@@ -58,6 +58,7 @@ export class OrgSelectorComponent implements OnInit {
 
   compareSymbols() {
     // Pass along the hero id if available
-    this.router.navigate(['/compare']);
+    this.state.take(1).subscribe(s => 
+      this.router.navigate(['/compare', s.compare.symbol1.Symbol, s.compare.symbol2.Symbol]));
   }
 }

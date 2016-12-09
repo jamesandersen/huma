@@ -18,6 +18,9 @@ import { OrgSelectorRoutes } from './org-selector/org-selector.routes';
 import { CompareRoutes } from './compare/compare.routes';
 import { BannerRoutes } from './banner/banner.routes';
 
+import { SECDataResolve } from './compare/secdata.resolve';
+import { SECDataService } from './secdata/sec-data.service';
+
 import { reducer } from './reducers';
 
 const routes: Routes = [
@@ -50,7 +53,10 @@ const routes: Routes = [
      */
     StoreModule.provideStore(reducer),
   ],
-  providers: [ ],
+  providers: [
+    SECDataResolve,
+    SECDataService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,7 +1,9 @@
 @import "variables.less";
 
+@headerHeight: 40px;
+
 .container {
-   width: @app_width; 
+   //width: @app_width; 
    margin: 0px auto;
 }
 
@@ -32,10 +34,36 @@ div[role="main"] {
     position: relative;
     margin: 0px auto;
     width: 100%;
+    margin-top: @headerHeight;
 }
 
-nav a.active {
-    font-weight: bold;
+nav  {
+    position: fixed;
+    float: left;
+    z-index: 99999;
+    top: 0;
+    width: 100%;
+    height: @headerHeight;
+
+    .home { float: left; }
+
+    .links {float: right; }
+
+    a {
+        padding: 25px 20px 0 20px;
+        -webkit-transition: color .2s ease-in-out,opacity .2s ease;
+        transition: color .2s ease-in-out,opacity .2s ease;
+        color: #fff;
+        font-size: 14px;
+        font-weight: 400;
+        letter-spacing: 1px;
+        text-decoration: none;
+
+        &:hover, &.active {
+            color: @color_accent_1;
+            font-weight: 400;
+        }
+    }
 }
 
 
@@ -43,7 +71,5 @@ nav a.active {
 @media only screen 
   and (min-device-width: 768px)  
   and (-webkit-min-device-pixel-ratio: 1) {
-     .container {
-      width: 600px;
-   }
+     
 }

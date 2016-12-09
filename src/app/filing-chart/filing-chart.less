@@ -1,13 +1,17 @@
-div.debit {
-    color: red;
+.chart { padding: 8px; }
+
+.ticker { float: left; }
+.filing { float: right; }
+.org-name { font-size: 1.5rem; clear: both; }
+
+tr {
+    .debit { color: red; }
+    .credit { color: green; }
+    .rollup { font-weight: bold; }
+
+    td:nth-child(2) { text-align: right; }
 }
 
-div.credit {
-    color: green;
-}
-div.rollup {
-    font-weight: bold;
-}
 
 indent1 { padding-left: 2em; }
 indent2 { padding-left: 4em; }

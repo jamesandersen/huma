@@ -3,9 +3,13 @@
     <div class="light" id="l2"></div>
     <div class="light" id="l3"></div>
     <nav>
-      <a routerLink="/" routerLinkActive="active">Home</a>
-      <a routerLink="/launch" routerLinkActive="active">Launch</a>
-      <a routerLink="/compare" routerLinkActive="active">Compare</a>
+      <div class="home">
+        <a routerLink="/" routerLinkActive="active">SEC COMPARE</a>
+      </div>
+      <div class="links">
+        <a routerLink="/launch" routerLinkActive="active">LAUNCH</a>
+        <a routerLink="/compare" routerLinkActive="active">COMPARE</a>
+      </div>
     </nav>
     <div class="content clearfix" role="main">
       <router-outlet></router-outlet>
