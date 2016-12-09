@@ -2,10 +2,10 @@
   <h3>Choose two stocks to compare</h3>
   <div>
     <app-symbol-picker placeholder="MSFT"
-      [selectedSymbol]="(compare | async).symbol1"
+      [selectedSymbol]="(compare | async).symbol1.value"
       (symbolSelected)="onSelection(1, $event)"></app-symbol-picker>
     <app-symbol-picker placeholder="AAPL"
-      [selectedSymbol]="(compare | async).symbol2"
+      [selectedSymbol]="(compare | async).symbol2.value"
       (symbolSelected)="onSelection(2, $event)"></app-symbol-picker>
   </div>
   
