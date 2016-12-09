@@ -53,12 +53,12 @@ export class OrgSelectorComponent implements OnInit {
   get canCompare() { return this.state.map(s => !!(s.compare.symbol1 && s.compare.symbol2)); }
 
   onSelection(index: number, evt: Symbol) {
-    this.state.dispatch(new SetSymbolAction({ index: index, symbol: evt }));
+    this.state.dispatch(new SetSymbolAction({ index: index, data: evt }));
   }
 
   compareSymbols() {
     // Pass along the hero id if available
     this.state.take(1).subscribe(s => 
-      this.router.navigate(['/compare', s.compare.symbol1.Symbol, s.compare.symbol2.Symbol]));
+      this.router.navigate(['/compare', s.compare.symbol1.value.Symbol, s.compare.symbol2.value.Symbol]));
   }
 }

@@ -14,11 +14,17 @@ export const ActionTypes = {
   SET_SYMBOL:  '[Compare] SetSymbol',
   SET_FILING:  '[Compare] SetFiling',
   CLEAR:       '[Compare] Clear',
+  LOADING:     '[Compare] Loading'
 };
 
-export interface SetSymbol {
-    symbol: Symbol;
+export interface Set<T> {
+    data: T;
     index: number;
+}
+
+export interface SetLoading {
+  target: string;
+  index: number;
 }
 
 /**
@@ -31,19 +37,25 @@ export interface SetSymbol {
 export class SetSymbolAction implements Action {
   type = ActionTypes.SET_SYMBOL;
 
-  constructor(public payload: SetSymbol) { }
+  constructor(public payload: Set<Symbol>) { }
 }
 
 export class SetFilingAction implements Action {
   type = ActionTypes.SET_FILING;
 
-  constructor(public payload: Filing) { }
+  constructor(public payload: Set<Filing>) { }
 }
 
 export class ClearAction implements Action {
   type = ActionTypes.CLEAR;
 
   constructor(public payload: any) { }
+}
+
+export class LoadingAction implements Action {
+  type = ActionTypes.LOADING;
+
+  constructor(public payload: SetLoading) { }
 }
 
 /**
@@ -53,4 +65,5 @@ export class ClearAction implements Action {
 export type Actions
   = SetSymbolAction
   | SetFilingAction
-  | ClearAction;
+  | ClearAction
+  | LoadingAction;

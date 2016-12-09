@@ -20,7 +20,7 @@ import { SECCompare } from '../reducers/compare';
   <div class="compare">
     <div [hidden]="(loading1 | async)">
       <app-filing-chart 
-        [filing]="(compare | async).filing1" 
+        [filing]="(compare | async).filing1.value" 
         [maxValue]="(maxValue | async)"></app-filing-chart>
     </div>
     <div [hidden]="(loading1 | async) === false || false" class="loader">Loading...</div>
@@ -28,7 +28,7 @@ import { SECCompare } from '../reducers/compare';
   <div class="compare">
     <div [hidden]="(loading2 | async)">
       <app-filing-chart 
-        [filing]="(compare | async).filing2" 
+        [filing]="(compare | async).filing2.value" 
         [maxValue]="(maxValue | async)"></app-filing-chart>
     </div>
     <div [hidden]="(loading2 | async) === false || false" class="loader">Loading...</div>
@@ -52,8 +52,8 @@ export class CompareComponent implements OnInit, OnDestroy {
     this.maxValue = this.state.map(state => {
       return state.compare && (state.compare.filing1 || state.compare.filing2)
         ? Math.max(
-          state.compare.filing1 ? state.compare.filing1.revenues : 0,
-          state.compare.filing2 ? state.compare.filing2.revenues : 0)
+          state.compare.filing1.value ? state.compare.filing1.value.revenues : 0,
+          state.compare.filing2.value ? state.compare.filing2.value.revenues : 0)
         : 0;
     });
   }
